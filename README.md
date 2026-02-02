@@ -1,173 +1,179 @@
-# Pyxon AI - Junior Engineer Entry Task
+# Pyxon AI Document Parser
 
-## Overview
+An intelligent RAG-powered document processing system with full Arabic language support, built for the Pyxon AI technical assessment.
 
-Your task is to build an **AI-powered document parser** that intelligently processes documents, understands their content, and prepares them for retrieval-augmented generation (RAG) systems. The parser should support multiple file formats, intelligent chunking strategies, and full Arabic language support including diacritics (harakat).
+## 🌟 Features
 
-## Task Requirements
+- **Multi-Format Support**: Process PDF, DOCX, DOC, and TXT files
+- **Intelligent Chunking**: Automatic strategy selection between fixed-size and dynamic/semantic chunking
+- **Arabic Language Support**: Full support for Arabic text including diacritics (harakat)
+- **Dual Storage**: PostgreSQL for metadata + ChromaDB for vector embeddings
+- **Semantic Search**: Advanced RAG-powered retrieval with multilingual embeddings
+- **Modern UI**: Beautiful web interface with drag-and-drop upload
+- **Comprehensive Benchmarks**: Built-in benchmark suite for testing retrieval accuracy
 
-### 1. Document Parser
+## 🚀 Quick Start
 
-Create an AI parser that can:
+### Prerequisites
 
-- **Read multiple file formats:**
-  - PDF files
-  - DOC/DOCX files
-  - TXT files
+- Python 3.11+
+- PostgreSQL 15+
+- Docker (optional, for containerized deployment)
 
-- **Content Understanding:**
-  - Analyze and understand the semantic content of documents
-  - Identify document structure, topics, and key concepts
-  - Determine the most appropriate chunking strategy based on content
+### Local Development
 
-- **Intelligent Chunking:**
-  - **Fixed chunking:** For uniform documents (e.g., structured reports, forms)
-  - **Dynamic chunking:** For documents with varying structure (e.g., books with chapters, mixed content)
-  - The parser should automatically decide which strategy to use based on document analysis
-
-- **Storage:**
-  - Save processed chunks to a **Vector Database** (for semantic search)
-  - Save metadata and structured information to a **SQL Database** (for relational queries)
-
-- **Arabic Language Support:**
-  - Full support for Arabic text
-  - Support for Arabic diacritics (harakat/tashkeel)
-  - Proper handling of Arabic text encoding and directionality
-
-### 2. Benchmark Suite
-
-Create a comprehensive benchmark to test:
-
-- **Retrieval accuracy:** How well the system retrieves relevant chunks for given queries
-- **Chunking quality:** Evaluate if chunks maintain semantic coherence
-- **Performance metrics:** Speed, memory usage, and scalability
-- **Arabic-specific tests:** Verify proper handling of Arabic text and diacritics
-
-### 3. RAG Integration
-
-The parser should be designed to integrate with a RAG system that:
-- Connects to LLMs for question answering
-- Uses the vector database for semantic retrieval
-- Uses the SQL database for structured queries
-
-## Technical Specifications
-
-### Recommended Approaches
-
-Consider implementing advanced RAG techniques:
-
-1. **Graph RAG:** Use knowledge graphs to represent document relationships and improve retrieval
-2. **RAPTOR (Recursive Abstractive Processing for Tree-Organized Retrieval):** Implement hierarchical document understanding and chunking
-3. **Hybrid Retrieval:** Combine semantic (vector) and keyword-based retrieval
-
-### Reference Material
-
-- [NotebookLM Processing Sources - RAG Discussion](https://www.reddit.com/r/notebooklm/comments/1h1saih/how_is_notebooklm_processing_sources_rag_brute/)
-- Research papers on Graph RAG
-- RAPTOR implementation techniques
-
-### Technology Stack
-
-**You are free to use any framework, library, or technology stack of your choice.** The following are suggestions only:
-
-- **Document Processing:** PyPDF2, python-docx, or similar libraries
-- **NLP/Embeddings:** Transformers, sentence-transformers, or multilingual models
-- **Vector DB:** Chroma, Pinecone, Weaviate, or Qdrant
-- **SQL DB:** PostgreSQL, SQLite, or MySQL
-- **Arabic NLP:** Consider models like CAMeLBERT, AraBERT, or multilingual models with Arabic support
-
-Choose the tools and frameworks that best fit your implementation approach and expertise.
-
-## Deadline
-
-**Submission Deadline:** Monday, February 2nd, 13:00 Amman time.
-
-**Review Timeline:** Code reviews and candidate calls will be conducted on Tuesday, February 3rd.
-
-## Submission Guidelines
-
-### Process
-
-1. **Fork this repository** to your GitHub account
-2. **Implement the solution** following the requirements above
-3. **Create a working demo** that can be accessed and tested online
-4. **Create a Pull Request** with:
-   - **Contact Information** (required) - Your email address or phone number for communication
-   - **Demo link** (required) - A live, accessible demo to test the implementation
-   - Clear description of what was implemented
-   - Architecture decisions and trade-offs
-   - How to run the code
-   - Benchmark results
-   - Any limitations or future improvements
-   - **Questions & Assumptions** - If you have any questions about the requirements, list them in the PR along with the assumptions you made to proceed
-
-### Important Notes
-
-- **Reply to emails:** After submitting your PR, you will receive an email. Please reply to confirm receipt and availability.
-- **Questions:** If you have any questions or ambiguities about the requirements, include them in your PR description along with the assumptions you made to proceed with the implementation.
-
-### PR Description Template
-
-```markdown
-## Summary
-Brief overview of the implementation
-
-## Contact Information
-📧 Email: [your-email@example.com] or 📱 Phone: [your-phone-number] - **REQUIRED**
-
-## Demo Link
-🔗 [Link to live demo] - **REQUIRED**
-
-## Features Implemented
-- [ ] Document parsing (PDF, DOCX, TXT)
-- [ ] Content analysis and chunking strategy selection
-- [ ] Fixed and dynamic chunking
-- [ ] Vector DB integration
-- [ ] SQL DB integration
-- [ ] Arabic language support
-- [ ] Arabic diacritics support
-- [ ] Benchmark suite
-- [ ] RAG integration ready
-
-## Architecture
-Description of system design and key components
-
-## Technologies Used
-List of libraries and frameworks
-
-## Benchmark Results
-Key metrics and performance data
-
-## How to Run
-Step-by-step instructions
-
-## Questions & Assumptions
-If you had any questions about the requirements, list them here along with the assumptions you made:
-- Question 1: [Your question]
-  - Assumption: [How you proceeded]
-- Question 2: [Your question]
-  - Assumption: [How you proceeded]
-
-## Future Improvements
-Ideas for enhancement
+1. **Clone the repository**
+```bash
+git clone <repository-url>
+cd pyxon-ai-document-parser
 ```
 
-**Note:** The demo link is a **mandatory requirement**. It should allow reviewers to test your implementation with sample documents (including Arabic documents with diacritics) and see the chunking and retrieval in action.
+2. **Create virtual environment**
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
 
-## Evaluation Criteria
+3. **Install dependencies**
+```bash
+pip install -r requirements.txt
+```
 
-Your submission will be evaluated on:
+4. **Set up environment variables**
+```bash
+cp .env.example .env
+# Edit .env with your database credentials
+```
 
-1. **Functionality:** All requirements are met
-2. **Code Quality:** Clean, maintainable, well-documented code
-3. **Arabic Support:** Proper handling of Arabic text and diacritics
-4. **Intelligent Chunking:** Effective strategy selection and implementation
-5. **Benchmark Quality:** Comprehensive tests and meaningful metrics
-6. **Architecture:** Well-designed, scalable solution
-7. **Documentation:** Clear README and code comments
+5. **Run the application**
+```bash
+uvicorn app.main:app --reload
+```
 
-## Questions?
+6. **Access the application**
+- Web Interface: http://localhost:8000
+- API Documentation: http://localhost:8000/api/docs
 
-If you have any questions about the requirements, please include them in your PR description along with the assumptions you made to proceed with the implementation. This helps us understand your decision-making process.
+### Docker Deployment
 
-Good luck! 🚀
+```bash
+docker-compose up -d
+```
+
+## 📚 API Endpoints
+
+### Documents
+
+- `POST /api/documents/upload` - Upload and process a document
+- `GET /api/documents/` - List all documents
+- `GET /api/documents/{id}` - Get document details
+- `DELETE /api/documents/{id}` - Delete a document
+
+### Query
+
+- `POST /api/query/` - Search documents with semantic similarity
+- `GET /api/query/context` - Get context for LLM integration
+
+## 🏗️ Architecture
+
+```
+┌─────────────────┐
+│   Frontend UI   │
+│  (HTML/CSS/JS)  │
+└────────┬────────┘
+         │
+    ┌────▼────┐
+    │ FastAPI │
+    └────┬────┘
+         │
+    ┌────▼──────────────────┐
+    │  Document Processor   │
+    │  - PDF/DOCX/TXT       │
+    │  - Arabic Detection   │
+    └────┬──────────────────┘
+         │
+    ┌────▼──────────────────┐
+    │  Chunking Service     │
+    │  - Fixed Strategy     │
+    │  - Dynamic Strategy   │
+    └────┬──────────────────┘
+         │
+    ┌────▼──────────────────┐
+    │  Embedding Service    │
+    │  (Multilingual Model) │
+    └────┬──────────────────┘
+         │
+    ┌────▼──────────────────┐
+    │   Storage Layer       │
+    ├───────────────────────┤
+    │  PostgreSQL  │ ChromaDB│
+    │  (Metadata)  │ (Vectors)│
+    └───────────────────────┘
+```
+
+## 🧪 Running Benchmarks
+
+```bash
+python benchmarks/benchmark_suite.py
+```
+
+Benchmark results will be saved to `benchmarks/results/benchmark_results.json`
+
+## 🌐 Arabic Language Support
+
+The system fully supports Arabic text processing:
+
+- **Encoding Detection**: Automatic detection of UTF-8 and CP1256 (Arabic Windows)
+- **Diacritics Preservation**: Maintains Arabic diacritics (harakat) throughout processing
+- **Multilingual Embeddings**: Uses `paraphrase-multilingual-MiniLM-L12-v2` for Arabic-aware semantic search
+- **RTL Support**: Frontend supports right-to-left text display
+
+## 🔧 Technology Stack
+
+- **Backend**: FastAPI, SQLAlchemy, Pydantic
+- **Database**: PostgreSQL, ChromaDB
+- **ML/NLP**: Sentence Transformers, NLTK, PyTorch
+- **Document Processing**: PyPDF2, pdfplumber, python-docx
+- **Frontend**: Vanilla HTML/CSS/JavaScript
+- **Deployment**: Docker, Docker Compose
+
+## 📊 Chunking Strategies
+
+### Fixed-Size Chunking
+- Chunk size: 512 tokens
+- Overlap: 50 tokens
+- Best for: Uniform content, simple documents
+
+### Dynamic/Semantic Chunking
+- Paragraph-aware splitting
+- Sentence boundary detection
+- Best for: Complex documents, structured content
+
+The system automatically selects the optimal strategy based on document characteristics.
+
+## 🎯 Design Decisions
+
+1. **ChromaDB over Pinecone/Weaviate**: Free, easy deployment, no API keys required
+2. **Multilingual Model**: Supports 50+ languages including Arabic
+3. **Dual Storage**: SQL for structured queries, Vector DB for semantic search
+4. **Glassmorphism UI**: Modern, premium design for better user experience
+5. **Automatic Strategy Selection**: AI-powered decision making for chunking
+
+## 📝 Implementation Notes
+
+- All text processing preserves UTF-8 encoding for Arabic support
+- Embeddings are generated in batches for efficiency
+- Vector similarity uses cosine distance
+- Frontend uses vanilla JavaScript for simplicity and performance
+
+## 🚢 Deployment
+
+The application is deployed on Render.com and accessible at:
+**[Demo URL will be added here]**
+
+## 👤 Author
+
+**[Your Name]**
+- Email: [your-email@example.com]
+- GitHub: [your-github-username]
+
