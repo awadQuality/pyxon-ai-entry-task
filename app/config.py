@@ -12,7 +12,7 @@ class Settings(BaseSettings):
     debug: bool = True
     
     # Database
-    database_url: str = "postgresql://pyxon_user:secure_password@localhost:5433/pyxon_rag"
+    database_url: str
     postgres_user: str = "pyxon_user"
     postgres_password: str = "secure_password_here"
     postgres_db: str = "pyxon_rag"
